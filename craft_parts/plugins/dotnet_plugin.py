@@ -105,6 +105,8 @@ class DotnetPlugin(Plugin):
         """Return a list of commands to run during the build step."""
         options = cast(DotnetPluginProperties, self._options)
 
+        info_cmd = "dotnet --info"
+
         build_cmd = f"dotnet build -c {options.dotnet_build_configuration}"
         publish_cmd = (
             "dotnet publish "
@@ -117,4 +119,4 @@ class DotnetPlugin(Plugin):
                 f"-r {options.dotnet_self_contained_runtime_identifier}"
             )
 
-        return [build_cmd, publish_cmd]
+        return [info_cmd, build_cmd, publish_cmd]
