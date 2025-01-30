@@ -24,6 +24,7 @@ from .autotools_plugin import AutotoolsPlugin
 from .base import Plugin
 from .cmake_plugin import CMakePlugin
 from .dotnet_plugin import DotnetPlugin
+from .dotnet2_plugin import Dotnet2Plugin
 from .dump_plugin import DumpPlugin
 from .go_plugin import GoPlugin
 from .go_use_plugin import GoUsePlugin
@@ -55,6 +56,7 @@ _BUILTIN_PLUGINS: dict[str, PluginType] = {
     "autotools": AutotoolsPlugin,
     "cmake": CMakePlugin,
     "dotnet": DotnetPlugin,
+    "dotnet2": Dotnet2Plugin,
     "dump": DumpPlugin,
     "go": GoPlugin,
     "go-use": GoUsePlugin,
