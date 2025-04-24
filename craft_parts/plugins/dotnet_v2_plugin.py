@@ -270,6 +270,11 @@ class DotnetV2Plugin(Plugin):
         # Restore step
         restore_cmd = self._get_restore_command(dotnet_rid, options)
 
+        build_snaps = self.get_build_snaps()
+        if build_snaps:
+            # If we are using a snap, we need to use the snap version of the command
+            restore_cmd = restore_cmd.replace("dotnet", f"/snap/{build_snaps.pop()}/current/usr/lib/dotnet/dotnet")
+
         return [restore_cmd]
 
     @override
