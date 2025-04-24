@@ -272,8 +272,12 @@ class DotnetV2Plugin(Plugin):
 
         build_snaps = self.get_build_snaps()
         if build_snaps:
+            snap_name = next(iter(build_snaps))
             # If we are using a snap, we need to use the snap version of the command
-            restore_cmd = restore_cmd.replace("dotnet", f"/snap/{build_snaps.pop()}/current/usr/lib/dotnet/dotnet")
+            restore_cmd = restore_cmd.replace("dotnet", f"/snap/{snap_name}/current/usr/lib/dotnet/dotnet")
+            _, lib_path = self._get_dotnet_platform_info(build_for, snap_name)
+            if lib_path:
+                restore_cmd = f"LD_LIBRARY_PATH={lib_path} {restore_cmd}"
 
         return [restore_cmd]
 
